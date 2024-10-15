@@ -13,68 +13,13 @@ namespace Task2
 {
     public partial class Form1 : Form
     {
-        public class Employee
-        {
-            private string EmployeeName;
-            private int EmployeeNumber;
-
-
-            public void SetName(string Name) {
-                this.EmployeeName = Name;
-            }
-
-            public void SetNumber(int Number)
-            {
-                this.EmployeeNumber = Number;
-            }
-
-            public string GetName() {
-                return EmployeeName;
-            }
-
-            public int GetNumber()
-            {
-                return EmployeeNumber;
-            }
-
-        }
-
-        public class ProductionWorker : Employee
-        {
-            private int ShiftNumber;
-            private double HourlyPayRate;
-            public void SetShiftType(int ShiftType)
-            {
-                this.ShiftNumber = ShiftType;
-            }
-
-            public void SetPayRate(double PayRate)
-            {
-                this.HourlyPayRate = PayRate;
-            }
-            public string GetShiftNumber()
-            {
-                if (ShiftNumber == 1) {
-                    return "Day Shift";
-                }
-                return "Night Shift";
-            }
-
-            public double GetHourlyPayRate()
-            {
-                return HourlyPayRate;
-            }
-        }
 
         ProductionWorker worker = new ProductionWorker();
 
         public Form1()
         {
-            
             InitializeComponent();
         }
-
-        
 
         private void button1_Click(object sender, EventArgs e)
         {
