@@ -24,8 +24,8 @@ namespace Task2
         private void button1_Click(object sender, EventArgs e)
         {
 
-            if (nameTextBox.Text == null) {
-                Console.WriteLine("ASD");
+            if ((nameTextBox.Text == "") || (nameTextBox.Text.Substring(0, nameTextBox.Text.Length) == " ")) {
+                Error.Text = "Add a name.";
                 return;
             }
 
@@ -33,12 +33,19 @@ namespace Task2
 
             worker.SetName(nameTextBox.Text);
             try{
-                worker.SetNumber(int.Parse(numberTextBox.Text));
-                if (int.Parse(shiftTypeBox.Text) > 2) {
-                    Error.Text = "Incorrect Shift Type!: 1. Day Shift 2. Night Shift";
-                    return;
+                if (checkBox1.Checked){
+                    worker.SetShiftType(1);
                 }
-                worker.SetShiftType(int.Parse(shiftTypeBox.Text));
+                else {
+                    if (checkBox2.Checked){
+                        worker.SetShiftType(2);
+                    }
+                    else{
+                        Error.Text = "Please Choose a shift type.";
+                        return;
+                    }
+                }
+                worker.SetNumber(int.Parse(numberTextBox.Text));
                 worker.SetPayRate(double.Parse(hourlyPayrateBox.Text));
             }catch {
                 Error.Text = "An Error occurred. Please try again.";
@@ -48,8 +55,9 @@ namespace Task2
 
             nameTextBox.Clear();
             numberTextBox.Clear();
-            shiftTypeBox.Clear();
             hourlyPayrateBox.Clear();
+            checkBox1.Checked = false;
+            checkBox2.Checked = false;
 
             Error.Text = "";
 
@@ -58,5 +66,29 @@ namespace Task2
             ShiftTypeDisplay.Text = worker.GetShiftNumber();
             HPRDisplay.Text = worker.GetHourlyPayRate().ToString();
         }
+
+        private void hourlyPayrateBox_TextChanged(object sender, EventArgs e)
+        {
+            bool catchVal = false;
+            try{ 
+                double.Parse(hourlyPayrateBox.Text);
+            }catch { 
+                catchVal = true;
+            }
+            if (catchVal) {
+                hourlyPayrateBox.Clear();
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            checkBox2.Checked = false;
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            checkBox1.Checked = false;
+        }
+
     }
 }

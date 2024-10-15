@@ -33,7 +33,6 @@ namespace Task2
             this.button1 = new System.Windows.Forms.Button();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.numberTextBox = new System.Windows.Forms.TextBox();
-            this.shiftTypeBox = new System.Windows.Forms.TextBox();
             this.hourlyPayrateBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -44,6 +43,8 @@ namespace Task2
             this.NumberDisplay = new System.Windows.Forms.Label();
             this.ShiftTypeDisplay = new System.Windows.Forms.Label();
             this.HPRDisplay = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // button1
@@ -70,19 +71,13 @@ namespace Task2
             this.numberTextBox.Size = new System.Drawing.Size(158, 20);
             this.numberTextBox.TabIndex = 2;
             // 
-            // shiftTypeBox
-            // 
-            this.shiftTypeBox.Location = new System.Drawing.Point(41, 166);
-            this.shiftTypeBox.Name = "shiftTypeBox";
-            this.shiftTypeBox.Size = new System.Drawing.Size(158, 20);
-            this.shiftTypeBox.TabIndex = 3;
-            // 
             // hourlyPayrateBox
             // 
             this.hourlyPayrateBox.Location = new System.Drawing.Point(41, 224);
             this.hourlyPayrateBox.Name = "hourlyPayrateBox";
             this.hourlyPayrateBox.Size = new System.Drawing.Size(158, 20);
             this.hourlyPayrateBox.TabIndex = 4;
+            this.hourlyPayrateBox.TextChanged += new System.EventHandler(this.hourlyPayrateBox_TextChanged);
             // 
             // label1
             // 
@@ -162,11 +157,35 @@ namespace Task2
             this.HPRDisplay.Size = new System.Drawing.Size(0, 13);
             this.HPRDisplay.TabIndex = 13;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(36, 166);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(45, 17);
+            this.checkBox1.TabIndex = 14;
+            this.checkBox1.Text = "Day";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.Click += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(97, 166);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(51, 17);
+            this.checkBox2.TabIndex = 15;
+            this.checkBox2.Text = "Night";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.Click += new System.EventHandler(this.checkBox2_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(792, 450);
+            this.Controls.Add(this.checkBox2);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.HPRDisplay);
             this.Controls.Add(this.ShiftTypeDisplay);
             this.Controls.Add(this.NumberDisplay);
@@ -177,7 +196,6 @@ namespace Task2
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.hourlyPayrateBox);
-            this.Controls.Add(this.shiftTypeBox);
             this.Controls.Add(this.numberTextBox);
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.button1);
@@ -193,7 +211,6 @@ namespace Task2
         private Button button1;
         private TextBox nameTextBox;
         private TextBox numberTextBox;
-        private TextBox shiftTypeBox;
         private TextBox hourlyPayrateBox;
         private Label label1;
         private Label label2;
@@ -204,6 +221,10 @@ namespace Task2
         private Label NumberDisplay;
         private Label ShiftTypeDisplay;
         private Label HPRDisplay;
+        private CheckBox checkBox1;
+        private CheckBox checkBox2;
+
+        
     }
 }
 
