@@ -106,6 +106,7 @@ namespace Task2
             shiftTypeBox.Clear();
             hourlyPayrateBox.Clear();
 
+            Error.Text = "";
 
             NameDisplay.Text = worker.GetName();
             NumberDisplay.Text = worker.GetNumber().ToString();
