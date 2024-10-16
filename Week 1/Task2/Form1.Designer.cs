@@ -43,8 +43,9 @@ namespace Task2
             this.NumberDisplay = new System.Windows.Forms.Label();
             this.ShiftTypeDisplay = new System.Windows.Forms.Label();
             this.HPRDisplay = new System.Windows.Forms.Label();
-            this.Check = new System.Windows.Forms.CheckedListBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // button1
@@ -73,7 +74,7 @@ namespace Task2
             // 
             // hourlyPayrateBox
             // 
-            this.hourlyPayrateBox.Location = new System.Drawing.Point(41, 236);
+            this.hourlyPayrateBox.Location = new System.Drawing.Point(41, 211);
             this.hourlyPayrateBox.Name = "hourlyPayrateBox";
             this.hourlyPayrateBox.Size = new System.Drawing.Size(158, 20);
             this.hourlyPayrateBox.TabIndex = 4;
@@ -109,7 +110,7 @@ namespace Task2
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(38, 220);
+            this.label4.Location = new System.Drawing.Point(38, 195);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(84, 13);
             this.label4.TabIndex = 8;
@@ -157,25 +158,37 @@ namespace Task2
             this.HPRDisplay.Size = new System.Drawing.Size(0, 13);
             this.HPRDisplay.TabIndex = 13;
             // 
-            // Check
+            // radioButton1
             // 
-            this.Check.FormattingEnabled = true;
-            this.Check.Items.AddRange(new object[] {
-            "Night",
-            "Day"});
-            this.Check.Location = new System.Drawing.Point(41, 166);
-            this.Check.Name = "Check";
-            this.Check.Size = new System.Drawing.Size(120, 34);
-            this.Check.TabIndex = 14;
-            this.Check.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.Check_SelectedIndexChanged);
-
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(41, 166);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(50, 17);
+            this.radioButton1.TabIndex = 14;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Night";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.Click += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(97, 166);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(44, 17);
+            this.radioButton2.TabIndex = 15;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Day";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.Click += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(792, 450);
-            this.Controls.Add(this.Check);
+            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.HPRDisplay);
             this.Controls.Add(this.ShiftTypeDisplay);
             this.Controls.Add(this.NumberDisplay);
@@ -211,8 +224,9 @@ namespace Task2
         private Label NumberDisplay;
         private Label ShiftTypeDisplay;
         private Label HPRDisplay;
-        private CheckedListBox Check;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private RadioButton radioButton1;
+        private RadioButton radioButton2;
     }
 }
 

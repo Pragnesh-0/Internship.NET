@@ -34,15 +34,17 @@ namespace Task2
             worker.SetName(nameTextBox.Text);
             try{
 
-                if (Check.GetItemChecked(0) == false && Check.GetItemChecked(1) == false){
+                if (!(radioButton1.Checked || radioButton2.Checked)) {
+                    Error.Text = "Select a Shift!";
                     return;
                 }
 
-                if (Check.GetItemChecked(1)){
-                    worker.SetShiftType(1);
+                if (radioButton1.Checked)
+                {
+                    worker.SetShiftType(2);
                 }
-                else { 
-                    worker.SetShiftType(0);
+                else {
+                    worker.SetShiftType(1);
                 }
 
 
@@ -58,8 +60,8 @@ namespace Task2
             nameTextBox.Clear();
             numberTextBox.Clear();
             hourlyPayrateBox.Clear();
-            Check.SetItemChecked(0, false);
-            Check.SetItemChecked(1, false);
+            radioButton2.Checked = false;
+            radioButton1.Checked = false;
 
             Error.Text = "";
 
@@ -82,19 +84,14 @@ namespace Task2
             }
         }
 
-        int shiftVal = -1;
-
-        private void Check_SelectedIndexChanged(object sender, EventArgs e)
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            if (Check.GetSelected(0) && shiftVal != 0) {
-                shiftVal = 0;
-                Check.SetItemChecked(1,false);
-            }
-            if (Check.GetSelected(1) && shiftVal != 1)
-            {
-                shiftVal = 1;
-                Check.SetItemChecked(0, false);
-            }
+            radioButton2.Checked = false;
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            radioButton1.Checked = false;
         }
     }
 }
