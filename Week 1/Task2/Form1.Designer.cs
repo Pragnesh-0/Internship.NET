@@ -43,8 +43,8 @@ namespace Task2
             this.NumberDisplay = new System.Windows.Forms.Label();
             this.ShiftTypeDisplay = new System.Windows.Forms.Label();
             this.HPRDisplay = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.Check = new System.Windows.Forms.CheckedListBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // button1
@@ -73,7 +73,7 @@ namespace Task2
             // 
             // hourlyPayrateBox
             // 
-            this.hourlyPayrateBox.Location = new System.Drawing.Point(41, 224);
+            this.hourlyPayrateBox.Location = new System.Drawing.Point(41, 236);
             this.hourlyPayrateBox.Name = "hourlyPayrateBox";
             this.hourlyPayrateBox.Size = new System.Drawing.Size(158, 20);
             this.hourlyPayrateBox.TabIndex = 4;
@@ -109,7 +109,7 @@ namespace Task2
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(38, 208);
+            this.label4.Location = new System.Drawing.Point(38, 220);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(84, 13);
             this.label4.TabIndex = 8;
@@ -157,35 +157,25 @@ namespace Task2
             this.HPRDisplay.Size = new System.Drawing.Size(0, 13);
             this.HPRDisplay.TabIndex = 13;
             // 
-            // checkBox1
+            // Check
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(36, 166);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(45, 17);
-            this.checkBox1.TabIndex = 14;
-            this.checkBox1.Text = "Day";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.Click += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(97, 166);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(51, 17);
-            this.checkBox2.TabIndex = 15;
-            this.checkBox2.Text = "Night";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.Click += new System.EventHandler(this.checkBox2_CheckedChanged);
+            this.Check.FormattingEnabled = true;
+            this.Check.Items.AddRange(new object[] {
+            "Night",
+            "Day"});
+            this.Check.Location = new System.Drawing.Point(41, 166);
+            this.Check.Name = "Check";
+            this.Check.Size = new System.Drawing.Size(120, 34);
+            this.Check.TabIndex = 14;
+            this.Check.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.Check_SelectedIndexChanged);
+
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(792, 450);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.Check);
             this.Controls.Add(this.HPRDisplay);
             this.Controls.Add(this.ShiftTypeDisplay);
             this.Controls.Add(this.NumberDisplay);
@@ -221,10 +211,8 @@ namespace Task2
         private Label NumberDisplay;
         private Label ShiftTypeDisplay;
         private Label HPRDisplay;
-        private CheckBox checkBox1;
-        private CheckBox checkBox2;
-
-        
+        private CheckedListBox Check;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 

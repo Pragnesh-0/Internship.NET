@@ -33,18 +33,20 @@ namespace Task2
 
             worker.SetName(nameTextBox.Text);
             try{
-                if (checkBox1.Checked){
+
+                if (Check.GetItemChecked(0) == false && Check.GetItemChecked(1) == false){
+                    return;
+                }
+
+                if (Check.GetItemChecked(1)){
                     worker.SetShiftType(1);
                 }
-                else {
-                    if (checkBox2.Checked){
-                        worker.SetShiftType(2);
-                    }
-                    else{
-                        Error.Text = "Please Choose a shift type.";
-                        return;
-                    }
+                else { 
+                    worker.SetShiftType(0);
                 }
+
+
+
                 worker.SetNumber(int.Parse(numberTextBox.Text));
                 worker.SetPayRate(double.Parse(hourlyPayrateBox.Text));
             }catch {
@@ -56,8 +58,8 @@ namespace Task2
             nameTextBox.Clear();
             numberTextBox.Clear();
             hourlyPayrateBox.Clear();
-            checkBox1.Checked = false;
-            checkBox2.Checked = false;
+            Check.SetItemChecked(0, false);
+            Check.SetItemChecked(1, false);
 
             Error.Text = "";
 
@@ -80,15 +82,19 @@ namespace Task2
             }
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            checkBox2.Checked = false;
-        }
+        int shiftVal = -1;
 
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        private void Check_SelectedIndexChanged(object sender, EventArgs e)
         {
-            checkBox1.Checked = false;
+            if (Check.GetSelected(0) && shiftVal != 0) {
+                shiftVal = 0;
+                Check.SetItemChecked(1,false);
+            }
+            if (Check.GetSelected(1) && shiftVal != 1)
+            {
+                shiftVal = 1;
+                Check.SetItemChecked(0, false);
+            }
         }
-
     }
 }
