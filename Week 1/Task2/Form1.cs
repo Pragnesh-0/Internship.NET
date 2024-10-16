@@ -107,32 +107,41 @@ namespace Task2
         }
 
         private void dumpDB() {
-            try { myConnection.Open(); } catch (Exception ex) { Console.WriteLine(ex.ToString()); }
-            SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM Employee",myConnection);
-            DataTable dataTable = new DataTable();
+            try
+            {
+                myConnection.Open();
+                SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM Employee", myConnection);
+                DataTable dataTable = new DataTable();
 
-            sda.Fill(dataTable);
+                sda.Fill(dataTable);
 
-            for (int i = 0; i < dataTable.Rows.Count; i++) {
-                int empNum = (int)dataTable.Rows[i]["EmployeeNumber"];
-                string empName = (string)dataTable.Rows[i]["EmployeeName"];
-                int empShiftType = (int)dataTable.Rows[i]["EmployeeShiftType"];
-                double empHRP = double.Parse(dataTable.Rows[i]["EmployeeHrp"].ToString());
-                
-                ProductionWorker worker = new ProductionWorker();
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
+                    int empNum = (int)dataTable.Rows[i]["EmployeeNumber"];
+                    string empName = (string)dataTable.Rows[i]["EmployeeName"];
+                    int empShiftType = (int)dataTable.Rows[i]["EmployeeShiftType"];
+                    double empHRP = double.Parse(dataTable.Rows[i]["EmployeeHrp"].ToString());
 
-                worker.SetName(empName);
-                worker.SetNumber(empNum);
-                worker.SetShiftType(empShiftType);
-                worker.SetPayRate(empHRP);
+                    ProductionWorker worker = new ProductionWorker();
 
-                workerList.Add(worker);
+                    worker.SetName(empName);
+                    worker.SetNumber(empNum);
+                    worker.SetShiftType(empShiftType);
+                    worker.SetPayRate(empHRP);
+
+                    workerList.Add(worker);
+                }
+
+                displayWorker();
+
             }
-
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }finally {
+                myConnection.Close();
+            }
             
-
-            myConnection.Close();
-            displayWorker();
         }
 
         private bool addToDB(int num, string name, int shiftNum, double hourlyPayRate) {
