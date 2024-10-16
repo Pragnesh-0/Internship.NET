@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Task2
 {
@@ -22,12 +24,17 @@ namespace Task2
             base.Dispose(disposing);
         }
 
+
+        private SqlConnection myConnection = new SqlConnection();
+
         #region Windows Form Designer generated code
 
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
+        /// 
+        
         private void InitializeComponent()
         {
             this.button1 = new System.Windows.Forms.Button();
@@ -164,7 +171,7 @@ namespace Task2
             this.dataGridView1.Location = new System.Drawing.Point(305, 63);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dataGridView1.Size = new System.Drawing.Size(443, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(462, 150);
             this.dataGridView1.TabIndex = 16;
             // 
             // nameCol
