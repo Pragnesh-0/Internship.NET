@@ -21,6 +21,7 @@ namespace Task2
 
         List<ProductionWorker> workerList = new List<ProductionWorker>();
 
+        private SqlConnection myConnection = new SqlConnection();
 
         public Form1()
         {

@@ -25,7 +25,7 @@ namespace Task2
         }
 
 
-        private SqlConnection myConnection = new SqlConnection();
+        
 
         #region Windows Form Designer generated code
 
