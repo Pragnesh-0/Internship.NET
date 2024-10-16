@@ -39,13 +39,15 @@ namespace Task2
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.Error = new System.Windows.Forms.Label();
-            this.NameDisplay = new System.Windows.Forms.Label();
-            this.NumberDisplay = new System.Windows.Forms.Label();
-            this.ShiftTypeDisplay = new System.Windows.Forms.Label();
-            this.HPRDisplay = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.nameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.empNumCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.shiftCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hrp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -126,38 +128,6 @@ namespace Task2
             this.Error.Size = new System.Drawing.Size(0, 13);
             this.Error.TabIndex = 9;
             // 
-            // NameDisplay
-            // 
-            this.NameDisplay.AutoSize = true;
-            this.NameDisplay.Location = new System.Drawing.Point(493, 47);
-            this.NameDisplay.Name = "NameDisplay";
-            this.NameDisplay.Size = new System.Drawing.Size(0, 13);
-            this.NameDisplay.TabIndex = 10;
-            // 
-            // NumberDisplay
-            // 
-            this.NumberDisplay.AutoSize = true;
-            this.NumberDisplay.Location = new System.Drawing.Point(493, 99);
-            this.NumberDisplay.Name = "NumberDisplay";
-            this.NumberDisplay.Size = new System.Drawing.Size(0, 13);
-            this.NumberDisplay.TabIndex = 11;
-            // 
-            // ShiftTypeDisplay
-            // 
-            this.ShiftTypeDisplay.AutoSize = true;
-            this.ShiftTypeDisplay.Location = new System.Drawing.Point(493, 150);
-            this.ShiftTypeDisplay.Name = "ShiftTypeDisplay";
-            this.ShiftTypeDisplay.Size = new System.Drawing.Size(0, 13);
-            this.ShiftTypeDisplay.TabIndex = 12;
-            // 
-            // HPRDisplay
-            // 
-            this.HPRDisplay.AutoSize = true;
-            this.HPRDisplay.Location = new System.Drawing.Point(493, 208);
-            this.HPRDisplay.Name = "HPRDisplay";
-            this.HPRDisplay.Size = new System.Drawing.Size(0, 13);
-            this.HPRDisplay.TabIndex = 13;
-            // 
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
@@ -182,17 +152,53 @@ namespace Task2
             this.radioButton2.UseVisualStyleBackColor = true;
             this.radioButton2.Click += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.nameCol,
+            this.empNumCol,
+            this.shiftCol,
+            this.hrp});
+            this.dataGridView1.Location = new System.Drawing.Point(305, 63);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataGridView1.Size = new System.Drawing.Size(443, 150);
+            this.dataGridView1.TabIndex = 16;
+            // 
+            // nameCol
+            // 
+            this.nameCol.HeaderText = "Name";
+            this.nameCol.Name = "nameCol";
+            this.nameCol.ReadOnly = true;
+            // 
+            // empNumCol
+            // 
+            this.empNumCol.HeaderText = "Employee Number";
+            this.empNumCol.Name = "empNumCol";
+            this.empNumCol.ReadOnly = true;
+            // 
+            // shiftCol
+            // 
+            this.shiftCol.HeaderText = "Shift Type";
+            this.shiftCol.Name = "shiftCol";
+            this.shiftCol.ReadOnly = true;
+            // 
+            // hrp
+            // 
+            this.hrp.HeaderText = "Hourly Pay Rate";
+            this.hrp.Name = "hrp";
+            this.hrp.ReadOnly = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(792, 450);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioButton1);
-            this.Controls.Add(this.HPRDisplay);
-            this.Controls.Add(this.ShiftTypeDisplay);
-            this.Controls.Add(this.NumberDisplay);
-            this.Controls.Add(this.NameDisplay);
             this.Controls.Add(this.Error);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -204,6 +210,7 @@ namespace Task2
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -220,13 +227,14 @@ namespace Task2
         private Label label3;
         private Label label4;
         private Label Error;
-        private Label NameDisplay;
-        private Label NumberDisplay;
-        private Label ShiftTypeDisplay;
-        private Label HPRDisplay;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private RadioButton radioButton1;
         private RadioButton radioButton2;
+        private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn nameCol;
+        private DataGridViewTextBoxColumn empNumCol;
+        private DataGridViewTextBoxColumn shiftCol;
+        private DataGridViewTextBoxColumn hrp;
     }
 }
 

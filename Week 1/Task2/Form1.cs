@@ -8,21 +8,30 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using System.Drawing.Text;
 
 namespace Task2
 {
     public partial class Form1 : Form
     {
 
-        ProductionWorker worker = new ProductionWorker();
+        List<ProductionWorker> workerList = new List<ProductionWorker>();
 
         public Form1()
         {
             InitializeComponent();
         }
 
+        private void displayWorker() {
+            dataGridView1.Rows.Clear();
+            foreach (ProductionWorker worker in workerList) {
+                dataGridView1.Rows.Add(worker.GetName(), worker.GetNumber(), worker.GetShiftNumber(), worker.GetHourlyPayRate());
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
+            ProductionWorker worker = new ProductionWorker();
 
             if ((nameTextBox.Text == "") || (nameTextBox.Text.Substring(0, nameTextBox.Text.Length) == " ")) {
                 Error.Text = "Add a name.";
@@ -51,6 +60,8 @@ namespace Task2
 
                 worker.SetNumber(int.Parse(numberTextBox.Text));
                 worker.SetPayRate(double.Parse(hourlyPayrateBox.Text));
+
+                workerList.Add(worker);
             }catch {
                 Error.Text = "An Error occurred. Please try again.";
                 return;
@@ -65,11 +76,12 @@ namespace Task2
 
             Error.Text = "";
 
-            NameDisplay.Text = worker.GetName();
-            NumberDisplay.Text = worker.GetNumber().ToString();
-            ShiftTypeDisplay.Text = worker.GetShiftNumber();
-            HPRDisplay.Text = worker.GetHourlyPayRate().ToString();
+            displayWorker();
         }
+
+
+
+
 
         private void hourlyPayrateBox_TextChanged(object sender, EventArgs e)
         {
