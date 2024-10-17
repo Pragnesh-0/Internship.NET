@@ -80,11 +80,6 @@ namespace Task2
                 return;
             }
 
-            
-
-            
-
-
             nameTextBox.Clear();
             numberTextBox.Clear();
             hourlyPayrateBox.Clear();
@@ -133,33 +128,32 @@ namespace Task2
                 displayWorker();
 
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Console.WriteLine(ex.ToString());
-            }finally {
+            } finally {
                 myConnection.Close();
             }
             
         }
 
         private bool addToDB(int num, string name, int shiftNum, double hourlyPayRate) {
-            
-            try { myConnection.Open(); } catch (Exception ex) { Console.WriteLine(ex.ToString()); }
-            SqlCommand sqlcmd = new SqlCommand();
-            sqlcmd.CommandType = CommandType.Text;
-            sqlcmd.CommandText = "INSERT INTO Employee VALUES (@num,@name,@shiftNum,@hourlyPayrate)";
-            sqlcmd.Parameters.Add(new SqlParameter("@num", num));
-            sqlcmd.Parameters.Add(new SqlParameter("@name", name));
-            sqlcmd.Parameters.Add(new SqlParameter("@shiftNum", shiftNum));
-            sqlcmd.Parameters.Add(new SqlParameter("@hourlyPayrate", hourlyPayRate));
-            sqlcmd.Connection = myConnection;
+
             try {
+                myConnection.Open();
+                SqlCommand sqlcmd = new SqlCommand();
+                sqlcmd.CommandType = CommandType.Text;
+                sqlcmd.CommandText = "INSERT INTO Employee VALUES (@num,@name,@shiftNum,@hourlyPayrate)";
+                sqlcmd.Parameters.Add(new SqlParameter("@num", num));
+                sqlcmd.Parameters.Add(new SqlParameter("@name", name));
+                sqlcmd.Parameters.Add(new SqlParameter("@shiftNum", shiftNum));
+                sqlcmd.Parameters.Add(new SqlParameter("@hourlyPayrate", hourlyPayRate));
+                sqlcmd.Connection = myConnection;
                 sqlcmd.ExecuteNonQuery();
-            } catch (Exception) {
+            } catch {
                 Error.Text = "An error occurred when entering data in database.";
                 myConnection.Close();
                 return false;
-            }finally {
+            } finally {
                 myConnection.Close();
             }
             return true;
@@ -169,9 +163,9 @@ namespace Task2
         private void hourlyPayrateBox_TextChanged(object sender, EventArgs e)
         {
             bool catchVal = false;
-            try{ 
+            try { 
                 double.Parse(hourlyPayrateBox.Text);
-            }catch { 
+            } catch { 
                 catchVal = true;
             }
             if (catchVal) {
@@ -211,6 +205,5 @@ namespace Task2
                 displayWorker();
             }
         }
-
     }
 }
