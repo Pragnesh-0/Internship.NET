@@ -147,7 +147,11 @@ namespace Task2
             try { myConnection.Open(); } catch (Exception ex) { Console.WriteLine(ex.ToString()); }
             SqlCommand sqlcmd = new SqlCommand();
             sqlcmd.CommandType = CommandType.Text;
-            sqlcmd.CommandText = "INSERT INTO Employee VALUES (" + num + ",'" + name + "', " + shiftNum + "," + hourlyPayRate + ")";
+            sqlcmd.CommandText = "INSERT INTO Employee VALUES (@num,@name,@shiftNum,@hourlyPayrate)";
+            sqlcmd.Parameters.Add(new SqlParameter("@num", num));
+            sqlcmd.Parameters.Add(new SqlParameter("@name", name));
+            sqlcmd.Parameters.Add(new SqlParameter("@shiftNum", shiftNum));
+            sqlcmd.Parameters.Add(new SqlParameter("@hourlyPayrate", hourlyPayRate));
             sqlcmd.Connection = myConnection;
             try {
                 sqlcmd.ExecuteNonQuery();
@@ -194,8 +198,10 @@ namespace Task2
                     var id = row.Cells[1].Value;
                     myConnection.Open();
                     SqlCommand newCmd = new SqlCommand();
-                    newCmd.CommandText = "DELETE FROM Employee WHERE EmployeeNumber = " + id;
+                    newCmd.CommandText = "DELETE FROM Employee WHERE EmployeeNumber = @ID";
                     newCmd.Connection = myConnection;
+                    SqlParameter pram = new SqlParameter("@ID", id);
+                    newCmd.Parameters.Add(pram);
                     newCmd.ExecuteNonQuery();
                 } catch {
                     Error.Text = "An Error Occurred.";
