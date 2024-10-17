@@ -56,6 +56,16 @@ namespace Task2
             this.shiftCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hrp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.nameEdit = new System.Windows.Forms.TextBox();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.hrpEdit = new System.Windows.Forms.TextBox();
+            this.idVal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -170,12 +180,14 @@ namespace Task2
             this.empNumCol,
             this.shiftCol,
             this.hrp,
-            this.Delete});
-            this.dataGridView1.Location = new System.Drawing.Point(242, 58);
+            this.Delete,
+            this.Edit});
+            this.dataGridView1.Location = new System.Drawing.Point(272, 58);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dataGridView1.Size = new System.Drawing.Size(545, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(645, 150);
             this.dataGridView1.TabIndex = 16;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.button_Clicked);
             // 
             // nameCol
             // 
@@ -211,15 +223,129 @@ namespace Task2
             this.Delete.HeaderText = "Delete Record";
             this.Delete.Name = "Delete";
             this.Delete.Text = "Delete Record";
-            this.Delete.UseColumnTextForButtonValue = true;
             this.Delete.ToolTipText = "This will permanently delete the record.";
-            this.dataGridView1.CellClick += new DataGridViewCellEventHandler(this.deleteButton_Clicked);
+            this.Delete.UseColumnTextForButtonValue = true;
+            // 
+            // Edit
+            // 
+            this.Edit.HeaderText = "Edit";
+            this.Edit.Name = "Edit";
+            this.Edit.Text = "Edit Record";
+            this.Edit.ToolTipText = "This will permanently edit the record.";
+            this.Edit.UseColumnTextForButtonValue = true;
+            // 
+            // button2
+            // 
+            this.button2.Enabled = false;
+            this.button2.Location = new System.Drawing.Point(759, 348);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 17;
+            this.button2.Text = "Edit";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Enabled = false;
+            this.label5.Location = new System.Drawing.Point(571, 284);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.TabIndex = 19;
+            this.label5.Text = "Name";
+            this.label5.Visible = false;
+            // 
+            // nameEdit
+            // 
+            this.nameEdit.Enabled = false;
+            this.nameEdit.Location = new System.Drawing.Point(574, 300);
+            this.nameEdit.Name = "nameEdit";
+            this.nameEdit.Size = new System.Drawing.Size(158, 20);
+            this.nameEdit.TabIndex = 18;
+            this.nameEdit.Visible = false;
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Enabled = false;
+            this.radioButton3.Location = new System.Drawing.Point(630, 351);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(44, 17);
+            this.radioButton3.TabIndex = 24;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "Day";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.Visible = false;
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Enabled = false;
+            this.radioButton4.Location = new System.Drawing.Point(574, 351);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(50, 17);
+            this.radioButton4.TabIndex = 23;
+            this.radioButton4.TabStop = true;
+            this.radioButton4.Text = "Night";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioButton4.Visible = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Enabled = false;
+            this.label7.Location = new System.Drawing.Point(571, 335);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(55, 13);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "Shift Type";
+            this.label7.Visible = false;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Enabled = false;
+            this.label8.Location = new System.Drawing.Point(756, 284);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(84, 13);
+            this.label8.TabIndex = 26;
+            this.label8.Text = "Hourly Pay Rate";
+            this.label8.Visible = false;
+            // 
+            // hrpEdit
+            // 
+            this.hrpEdit.Enabled = false;
+            this.hrpEdit.Location = new System.Drawing.Point(759, 300);
+            this.hrpEdit.Name = "hrpEdit";
+            this.hrpEdit.Size = new System.Drawing.Size(158, 20);
+            this.hrpEdit.TabIndex = 25;
+            this.hrpEdit.Visible = false;
+            this.hrpEdit.TextChanged += new System.EventHandler(this.textBox3_TextChanged_1);
+            // 
+            // idVal
+            // 
+            this.idVal.AutoSize = true;
+            this.idVal.Location = new System.Drawing.Point(571, 254);
+            this.idVal.Name = "idVal";
+            this.idVal.Size = new System.Drawing.Size(0, 13);
+            this.idVal.TabIndex = 27;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(792, 450);
+            this.ClientSize = new System.Drawing.Size(963, 450);
+            this.Controls.Add(this.idVal);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.hrpEdit);
+            this.Controls.Add(this.radioButton3);
+            this.Controls.Add(this.radioButton4);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.nameEdit);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioButton1);
@@ -262,6 +388,16 @@ namespace Task2
         private DataGridViewTextBoxColumn shiftCol;
         private DataGridViewTextBoxColumn hrp;
         private DataGridViewButtonColumn Delete;
+        private DataGridViewButtonColumn Edit;
+        private Button button2;
+        private Label label5;
+        private TextBox nameEdit;
+        private RadioButton radioButton3;
+        private RadioButton radioButton4;
+        private Label label7;
+        private Label label8;
+        private TextBox hrpEdit;
+        private Label idVal;
     }
 }
 

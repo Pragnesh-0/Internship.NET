@@ -23,6 +23,8 @@ namespace Task2
 
         private SqlConnection myConnection = new SqlConnection();
 
+        private int editID = 0;
+
         public Form1()
         {
             InitializeComponent();
@@ -128,8 +130,7 @@ namespace Task2
                 displayWorker();
 
             }
-            catch (Exception ex) {
-                Console.WriteLine(ex.ToString());
+            catch {
             } finally {
                 myConnection.Close();
             }
@@ -159,6 +160,29 @@ namespace Task2
             return true;
         }
 
+        private bool editDB(int num, string name, int shiftNum, double hourlyPayRate) {
+
+            try {
+                myConnection.Open();
+                SqlCommand sqlcmd = new SqlCommand();
+                sqlcmd.CommandText = "UPDATE Employee SET EmployeeName = @name, EmployeeShiftType = @shiftType, EmployeeHrp = @empHrp WHERE EmployeeNumber = @num";
+                sqlcmd.Parameters.Add(new SqlParameter("@name", name));
+                sqlcmd.Parameters.Add(new SqlParameter("@shiftType", shiftNum));
+                sqlcmd.Parameters.Add(new SqlParameter("@empHrp", hourlyPayRate));
+                sqlcmd.Parameters.Add(new SqlParameter("@num", num));
+                sqlcmd.Connection = myConnection;
+                sqlcmd.ExecuteNonQuery();
+            } catch {
+                myConnection.Close();
+                return false;
+            }
+            finally {
+                myConnection.Close(); 
+            }
+
+            return true;
+        }
+
 
         private void hourlyPayrateBox_TextChanged(object sender, EventArgs e)
         {
@@ -183,7 +207,7 @@ namespace Task2
             radioButton1.Checked = false;
         }
 
-        private void deleteButton_Clicked(object sender, DataGridViewCellEventArgs e)
+        private void button_Clicked(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 4) {
                 try {
@@ -203,7 +227,147 @@ namespace Task2
                 }
                 dumpDB();
                 displayWorker();
+            }else if(e.ColumnIndex == 5){
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+
+                idVal.Enabled = true;
+                idVal.Text = row.Cells[1].Value.ToString();
+                idVal.Visible = true;
+                
+
+                label7.Enabled = true;
+                nameEdit.Text = row.Cells[0].Value.ToString();
+                label7.Visible = true;
+                nameEdit.Enabled = true;
+                nameEdit.Visible = true;
+                
+
+                label8.Enabled = true;
+                label8.Visible = true;
+                hrpEdit.Text = row.Cells[3].Value.ToString();
+                hrpEdit.Enabled = true;
+                hrpEdit.Visible = true;
+                
+
+                label5.Enabled = true;
+                label5.Visible = true;
+                radioButton4.Visible = true;
+                radioButton4.Enabled = true;
+                radioButton3.Visible = true;
+                radioButton3.Enabled = true;
+                if (row.Cells[2].Value.ToString() == "Night Shift"){
+                    radioButton4.Checked = true;
+                }
+                else {
+                    radioButton3.Checked = true;
+                }
+
+                button2.Enabled = true;
+                button2.Visible = true;
+
             }
+        }
+
+        private void textBox3_TextChanged_1(object sender, EventArgs e){
+            bool catchVal = false;
+            try
+            {
+                double.Parse(hrpEdit.Text);
+            }
+            catch
+            {
+                catchVal = true;
+            }
+            if (catchVal)
+            {
+                hrpEdit.Clear();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ProductionWorker worker = new ProductionWorker();
+
+            if ((nameEdit.Text == "") || (nameEdit.Text.Substring(0, nameEdit.Text.Length) == " "))
+            {
+                Error.Text = "Add a name.";
+                return;
+            }
+
+            worker.SetName(nameEdit.Text);
+            try
+            {
+
+                if (!(radioButton3.Checked || radioButton4.Checked))
+                {
+                    return;
+                }
+
+                if (radioButton4.Checked)
+                {
+                    worker.SetShiftType(2);
+                }
+                else
+                {
+                    worker.SetShiftType(1);
+                }
+
+                var num = int.Parse(idVal.Text);
+
+                worker.SetPayRate(double.Parse(hrpEdit.Text));
+
+                int shiftNumber = 1;
+
+                if (worker.GetShiftNumber() == "Night Shift")
+                {
+                    shiftNumber = 2;
+                }
+
+                if (!editDB(num, worker.GetName(), shiftNumber, worker.GetHourlyPayRate()))
+                {
+                    return;
+                }
+            }
+            catch
+            {
+                Error.Text = "An Error occurred. Please try again.";
+                return;
+            }
+
+
+            idVal.Enabled = false;
+            idVal.Text = "";
+            idVal.Visible = false;
+
+
+            label7.Enabled = false;
+            nameEdit.Text = "";
+            label7.Visible = false;
+            nameEdit.Enabled = false;
+            nameEdit.Visible = false;
+
+
+            label8.Enabled = false;
+            label8.Visible = false;
+            hrpEdit.Text = "";
+            hrpEdit.Enabled = false;
+            hrpEdit.Visible = false;
+
+
+            label5.Enabled = false;
+            label5.Visible = false;
+            radioButton4.Visible = false;
+            radioButton4.Enabled = false;
+            radioButton3.Visible = false;
+            radioButton3.Enabled = false;
+            radioButton4.Checked = false;
+            radioButton4.Checked = false;
+
+            button2.Enabled = false;
+            button2.Visible = false;
+
+
+            dumpDB();
         }
     }
 }
