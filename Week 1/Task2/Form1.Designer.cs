@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace Task2
@@ -54,6 +55,7 @@ namespace Task2
             this.empNumCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.shiftCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hrp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -167,36 +169,51 @@ namespace Task2
             this.nameCol,
             this.empNumCol,
             this.shiftCol,
-            this.hrp});
-            this.dataGridView1.Location = new System.Drawing.Point(305, 63);
+            this.hrp,
+            this.Delete});
+            this.dataGridView1.Location = new System.Drawing.Point(242, 58);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dataGridView1.Size = new System.Drawing.Size(462, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(545, 150);
             this.dataGridView1.TabIndex = 16;
             // 
             // nameCol
             // 
+            this.nameCol.Frozen = true;
             this.nameCol.HeaderText = "Name";
             this.nameCol.Name = "nameCol";
             this.nameCol.ReadOnly = true;
             // 
             // empNumCol
             // 
+            this.empNumCol.Frozen = true;
             this.empNumCol.HeaderText = "Employee Number";
             this.empNumCol.Name = "empNumCol";
             this.empNumCol.ReadOnly = true;
             // 
             // shiftCol
             // 
+            this.shiftCol.Frozen = true;
             this.shiftCol.HeaderText = "Shift Type";
             this.shiftCol.Name = "shiftCol";
             this.shiftCol.ReadOnly = true;
             // 
             // hrp
             // 
+            this.hrp.Frozen = true;
             this.hrp.HeaderText = "Hourly Pay Rate";
             this.hrp.Name = "hrp";
             this.hrp.ReadOnly = true;
+            // 
+            // Delete
+            // 
+            this.Delete.Frozen = true;
+            this.Delete.HeaderText = "Delete Record";
+            this.Delete.Name = "Delete";
+            this.Delete.Text = "Delete Record";
+            this.Delete.UseColumnTextForButtonValue = true;
+            this.Delete.ToolTipText = "This will permanently delete the record.";
+            this.dataGridView1.CellClick += new DataGridViewCellEventHandler(this.deleteButton_Clicked);
             // 
             // Form1
             // 
@@ -223,6 +240,8 @@ namespace Task2
 
         }
 
+        
+
         #endregion
 
         private Button button1;
@@ -242,6 +261,7 @@ namespace Task2
         private DataGridViewTextBoxColumn empNumCol;
         private DataGridViewTextBoxColumn shiftCol;
         private DataGridViewTextBoxColumn hrp;
+        private DataGridViewButtonColumn Delete;
     }
 }
 

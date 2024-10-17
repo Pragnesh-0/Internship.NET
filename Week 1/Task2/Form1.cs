@@ -52,8 +52,7 @@ namespace Task2
                     return;
                 }
 
-                if (radioButton1.Checked)
-                {
+                if (radioButton1.Checked){
                     worker.SetShiftType(2);
                 }
                 else {
@@ -67,13 +66,11 @@ namespace Task2
 
                 int shiftNumber = 1;
 
-                if (worker.GetShiftNumber() == "Night Shift")
-                {
+                if (worker.GetShiftNumber() == "Night Shift"){
                     shiftNumber = 2;
                 }
 
-                if (!addToDB(worker.GetNumber(), worker.GetName(), shiftNumber, worker.GetHourlyPayRate()))
-                {
+                if (!addToDB(worker.GetNumber(), worker.GetName(), shiftNumber, worker.GetHourlyPayRate())){
                     return;
                 }
 
@@ -101,12 +98,13 @@ namespace Task2
 
         private void displayWorker() {
             dataGridView1.Rows.Clear();
-            foreach (ProductionWorker worker in workerList) {
+            foreach (ProductionWorker worker in workerList) { 
                 dataGridView1.Rows.Add(worker.GetName(), worker.GetNumber(), worker.GetShiftNumber(), worker.GetHourlyPayRate());
             }
         }
 
         private void dumpDB() {
+            workerList.Clear();
             try
             {
                 myConnection.Open();
@@ -153,13 +151,13 @@ namespace Task2
             sqlcmd.Connection = myConnection;
             try {
                 sqlcmd.ExecuteNonQuery();
-            } catch (Exception ex) {
+            } catch (Exception) {
                 Error.Text = "An error occurred when entering data in database.";
                 myConnection.Close();
                 return false;
+            }finally {
+                myConnection.Close();
             }
-                
-            myConnection.Close();
             return true;
         }
 
@@ -186,5 +184,28 @@ namespace Task2
         {
             radioButton1.Checked = false;
         }
+
+        private void deleteButton_Clicked(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 4) {
+                try {
+
+                    DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+                    var id = row.Cells[1].Value;
+                    myConnection.Open();
+                    SqlCommand newCmd = new SqlCommand();
+                    newCmd.CommandText = "DELETE FROM Employee WHERE EmployeeNumber = " + id;
+                    newCmd.Connection = myConnection;
+                    newCmd.ExecuteNonQuery();
+                } catch {
+                    Error.Text = "An Error Occurred.";
+                } finally {
+                    myConnection.Close();
+                }
+                dumpDB();
+                displayWorker();
+            }
+        }
+
     }
 }
