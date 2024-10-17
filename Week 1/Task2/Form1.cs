@@ -193,7 +193,6 @@ namespace Task2
         {
             if (e.ColumnIndex == 4) {
                 try {
-
                     DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
                     var id = row.Cells[1].Value;
                     myConnection.Open();
